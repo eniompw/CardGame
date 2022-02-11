@@ -50,7 +50,6 @@ def GetSuit(SuitNo):
   return Suit
 
 def CreateDeck(Deck):
-    Count = 0
     for S in range(1,5):
         for R in range(1,14):
             Deck.append(TCard(S,R))
