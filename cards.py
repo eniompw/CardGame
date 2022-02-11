@@ -1,11 +1,11 @@
 import random
 
 class TCard():
-  def __init__(self):
-    self.Suit = 0
-    self.Rank = 0
+  def __init__(self,Suit,Rank):
+    self.Suit = Suit
+    self.Rank = Rank
 
-Deck = [None]
+Deck = []
 
 def GetRank(RankNo):
   Rank = ''
@@ -50,21 +50,17 @@ def GetSuit(SuitNo):
   return Suit
 
 def CreateDeck(Deck):
-    Count = 1
+    Count = 0
     for S in range(1,5):
         for R in range(1,14):
-            Deck.append(TCard())
-            print(Count,S,R)
-            Deck[Count].Suit = S
-            Deck[Count].Rank = R
-            Count = Count + 1
+            Deck.append(TCard(S,R))
 
 def ShuffleDeck(Deck):
-  SwapSpace = TCard()
+  SwapSpace = TCard(0,0)
   NoOfSwaps = 1000
   for NoOfSwapsMadeSoFar in range(1, NoOfSwaps + 1):
-    Position1 = random.randint(1, 52)
-    Position2 = random.randint(1, 52)
+    Position1 = random.randint(0, 51)
+    Position2 = random.randint(0, 51)
     SwapSpace.Rank = Deck[Position1].Rank
     SwapSpace.Suit = Deck[Position1].Suit
     Deck[Position1].Rank = Deck[Position2].Rank
@@ -76,8 +72,8 @@ def DisplayCard(ThisCard):
   print('Card is the', GetRank(ThisCard.Rank), 'of', GetSuit(ThisCard.Suit))
 
 def DisplayDeck(Deck):
-    for i in range(1,53):
-        DisplayCard(Deck[i])
+    for i in Deck:
+        DisplayCard(i)
 
 CreateDeck(Deck)
 ShuffleDeck(Deck)
