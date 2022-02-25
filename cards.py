@@ -1,11 +1,12 @@
+from flask import Flask
+app = Flask(__name__)
+
 import random
 
 class TCard():
   def __init__(self,Suit,Rank):
     self.Suit = Suit
     self.Rank = Rank
-
-Deck = []
 
 def GetRank(RankNo):
   Rank = ''
@@ -68,12 +69,19 @@ def ShuffleDeck(Deck):
     Deck[Position2].Suit = SwapSpace.Suit
 
 def DisplayCard(ThisCard):
-  print('Card is the', GetRank(ThisCard.Rank), 'of', GetSuit(ThisCard.Suit))
+  return(GetRank(ThisCard.Rank),GetSuit(ThisCard.Suit))
 
-def DisplayDeck(Deck):
-    for i in Deck:
-        DisplayCard(i)
+def GetCard(index):
+    return DisplayCard(Deck[index])
 
+Deck = []
+index = -1
 CreateDeck(Deck)
 ShuffleDeck(Deck)
-DisplayDeck(Deck)
+
+@app.route('/')
+def home():
+    global index
+    index = index + 1
+    return str(index) + " : " + str(GetCard(index))
+
