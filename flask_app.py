@@ -16,3 +16,12 @@ def home():
         player.append(deck.GetCard(Deck, index))
         index = index + 1
     return render_template('cards.html', player=player)
+
+@app.route('/reset')
+def reset():
+    Deck = []
+    global index
+    index = 0
+    Deck = deck.CreateDeck(Deck)
+    Deck = deck.ShuffleDeck(Deck)
+    return 'reset'
