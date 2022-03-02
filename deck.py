@@ -65,7 +65,7 @@ def ShuffleDeck(Deck):
     Deck[Position1].Suit = Deck[Position2].Suit
     Deck[Position2].Rank = SwapSpace.Rank
     Deck[Position2].Suit = SwapSpace.Suit
-    return Deck
+  return Deck
 
 def DisplayCard(ThisCard):
   return(GetRank(ThisCard.Rank),GetSuit(ThisCard.Suit))
