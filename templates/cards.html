@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<p id="player"></p>
+<p id="table"></p>
+<p id="ai"></p>
+
+<script>
+var cards = {{ player | tojson }}
+
+function icon(card){
+    if (card == "Clubs"){
+        return "♣"
+    } else if (card == "Spades"){
+        return "♠"
+    } else if (card == "Hearts"){
+        return "♥"
+    } else if(card == "Diamonds"){
+        return "♦"
+    }
+}
+
+var hand = "";
+
+for (let i = 0; i < cards.length; i++) {
+  hand += cards[i][0] + icon(cards[i][1]) + " "
+}
+
+document.getElementById("player").innerHTML = hand;
+
+</script>
+
+</body>
+</html>
